@@ -1,3 +1,4 @@
+echo "In the terminal while running add the instances names (frontend, catalogue, mysql)"
 AMI_ID="ami-09c813fb71547fc4f"
 SG_ID="sg-0adfe78ec6189cd05"
 echo "get IP_s"
