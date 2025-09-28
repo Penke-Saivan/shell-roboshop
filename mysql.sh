@@ -9,8 +9,9 @@ N="\e[0m"
 
 PRESENT_DIRECTORY="$PWD"
 echo "---Present Working Directory is ----$PRESENT_DIRECTORY------------"
-LOGS_FOLDER="/var/log/mongodb-logs"
+
 FILE_NAME=$(echo $0 | cut -d "." -f1)
+LOGS_FOLDER="/var/log/$FILE_NAME-logs"
 LOG_FILE="$LOGS_FOLDER/$FILE_NAME.log"
 START_TIME=$(date +%s)
 mkdir -p  $LOGS_FOLDER
