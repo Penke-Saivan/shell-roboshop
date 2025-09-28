@@ -19,7 +19,7 @@ MONGO_IP="mongodb.believeinyou.fun"
 PRESENT_DIRECTORY="$PWD"
 mkdir -p  $LOGS_FOLDER
 
-echo "Script started executed $Y at $(date) ........$N" | tee -a $LOG_FILE
+echo -e "Script started executed $Y at $(date) ........$N" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]; then
     echo -e "Please use $G super user privilege $N" | tee -a $LOG_FILE
@@ -106,5 +106,5 @@ else
     echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
 fi
 
-systemctl restartt catalogue
+systemctl restart catalogue
 echo "Restarted catalogue"
