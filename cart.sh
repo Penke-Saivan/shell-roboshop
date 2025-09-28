@@ -88,5 +88,5 @@ VALIDATE $? "Enable cart"
 systemctl start cart
 VALIDATE $? "Start cart"
 
-systemctl restart catalogue
-VALIDATE $? "Restarted catalogue"
+systemctl restart cart
+VALIDATE $? "Restarted cart"

@@ -88,5 +88,5 @@ VALIDATE $? "Enable user"
 systemctl start user
 VALIDATE $? "Start user"
 
-systemctl restart catalogue
-VALIDATE $? "Restarted catalogue"
+systemctl restart user
+VALIDATE $? "Restarted user"
