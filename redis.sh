@@ -48,7 +48,7 @@ VALIDATE $? "Install Redis"
 # vim /etc/redis/redis.conf
 # 127.0.0.1 to 0.0.0.0 in /etc/redis/redis.conf
 
-sed -i "/127.0.0.1/0.0.0.0/g" /etc/redis/redis.conf
+sed -i "s/127.0.0.1/0.0.0.0/g" /etc/redis/redis.conf
 VALIDATE $? "Allowing Remote connections to Redis"
 
 sed -i "/protected-mode/c protected-mode no" /etc/redis/redis.conf
