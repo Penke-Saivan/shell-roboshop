@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 USERID=$(id -u)
@@ -15,7 +14,7 @@ FILE_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$FILE_NAME.log"
 
 mkdir -p  $LOGS_FOLDER
-START_TIME=$(date +%s)
+
 echo "Script started executed at $(date)" | tee -a $LOG_FILE
 
 if [ $USERID -ne 0 ]; then
@@ -35,33 +34,15 @@ VALIDATE(){
     fi        
 }
 
-dnf module disable redis -y &>>$LOG_FILE
-VALIDATE $? "Disbale Redis module"
+dnf install mysql-server -y
+VALIDATE $? "Installng MYsql-server"
+systemctl enable mysqld
+VALIDATE $? "enable MYsql-server"
+systemctl start mysqld  
+VALIDATE $? "Start MYsql-server"
+mysql_secure_installation --set-root-pass RoboShop@1
+VALIDATE $? "Setting root passwrod for MYsql-server"
 
-dnf module enable redis:7 -y &>>$LOG_FILE
-VALIDATE $? "Enable Redis module"
-
-dnf install redis -y &>>$LOG_FILE
-VALIDATE $? "Install Redis"
-
-# /etc/redis/redis.conf --protected-mode
-# vim /etc/redis/redis.conf
-# 127.0.0.1 to 0.0.0.0 in /etc/redis/redis.conf
-# By default protected mode is enabled. You should disable it only if
-# you are sure you want clients from other hosts to connect to Redis
-# even if no authentication is configured.
-
-sed -i "s/127.0.0.1/0.0.0.0/g" /etc/redis/redis.conf
-VALIDATE $? "Allowing Remote connections to Redis"
-
-sed -i "/protected-mode/c protected-mode no" /etc/redis/redis.conf
-VALIDATE $? "Not allowing protected-mode"
-
-systemctl enable redis  &>>$LOG_FILE
-VALIDATE $? "Enable Redis"
-
-systemctl start redis  &>>$LOG_FILE
-VALIDATE $? "Start Redis"
 
 END_TIME=$(date +%s)
 TOTAL_TIME=$(( $END_TIME - $START_TIME ))
