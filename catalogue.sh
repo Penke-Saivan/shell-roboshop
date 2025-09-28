@@ -9,7 +9,7 @@ N="\e[0m"
 
 PRESENT_DIRECTORY="$PWD"
 echo "---Present Working Directory is ----$PRESENT_DIRECTORY------------"
-LOGS_FOLDER="/var/log/catalogue-logs"
+LOGS_FOLDER="/var/log/catalogue1-logs"
 FILE_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$FILE_NAME.log"
 MONGO_IP="mongodb.believeinyou.fun"
@@ -67,7 +67,7 @@ VALIDATE $? "changing directory to app"
 rm -rf /app/*
 VALIDATE $? "removing existing code "
 
-unzip /tmp/catalogue.zip
+unzip /tmp/catalogue.zip &>>$LOG_FILE
 VALIDATE $? "Unzipping code into app"
 
 cd /app 
@@ -82,7 +82,7 @@ VALIDATE $? "copying catalogue to /etc/systemd/system/catalogue.service"
 systemctl daemon-reload
 VALIDATE $? "Daemon reloaded"
 
-systemctl enable catalogue 
+systemctl enable catalogue  &>>$LOG_FILE
 VALIDATE $? "Enable catalogue"
 
 systemctl start catalogue
