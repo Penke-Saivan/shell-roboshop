@@ -35,6 +35,8 @@ VALIDATE(){
     fi        
 }
 
+cp $PRESENT_DIRECTORY/rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo&>>LOG_FILE
+
 dnf install rabbitmq-server -y&>>LOG_FILE
 VALIDATE $? "Install RabbitMQ"
 systemctl enable rabbitmq-server&>>LOG_FILE
