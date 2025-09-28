@@ -12,7 +12,7 @@ echo "---Present Working Directory is ----$PRESENT_DIRECTORY------------"
 LOGS_FOLDER="/var/log/mongodb-logs"
 FILE_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$FILE_NAME.log"
-
+START_TIME=$(date +%s)
 mkdir -p  $LOGS_FOLDER
 
 echo "Script started executed at $(date)" | tee -a $LOG_FILE
@@ -34,13 +34,13 @@ VALIDATE(){
     fi        
 }
 
-dnf install mysql-server -y
+dnf install mysql-server -y&>>LOG_FILE
 VALIDATE $? "Installng MYsql-server"
-systemctl enable mysqld
+systemctl enable mysqld&>>LOG_FILE
 VALIDATE $? "enable MYsql-server"
-systemctl start mysqld  
+systemctl start mysqld &>>LOG_FILE
 VALIDATE $? "Start MYsql-server"
-mysql_secure_installation --set-root-pass RoboShop@1
+mysql_secure_installation --set-root-pass RoboShop@1&>>LOG_FILE
 VALIDATE $? "Setting root passwrod for MYsql-server"
 
 
