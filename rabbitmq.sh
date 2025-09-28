@@ -46,7 +46,7 @@ VALIDATE $? "Start RabbitMQ"
 
 rabbitmqctl list_users | grep 'roboshop'
 
-if [ $? -e 0 ]; then 
+if [ $? -eq 0 ]; then 
     echo "Already user exits"
 else
     rabbitmqctl add_user roboshop roboshop123
