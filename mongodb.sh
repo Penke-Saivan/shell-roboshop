@@ -35,10 +35,10 @@ VALIDATE(){
     fi        
 }
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp $PRESENT_DIRECTORY/mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Adding mongodb repo"
 
-dnf install mongodb-org -y 
+dnf install mongodb-org -y  &>>$LOG_FILE
 VALIDATE $? "Installing mongodb"
 
 systemctl enable mongod
