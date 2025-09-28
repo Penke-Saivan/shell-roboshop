@@ -9,7 +9,7 @@ N="\e[0m"
 
 PRESENT_DIRECTORY="$PWD"
 echo "---Present Working Directory is ----$PRESENT_DIRECTORY------------"
-LOGS_FOLDER="/var/log/catalogue1-logs"
+LOGS_FOLDER="/var/log/catalogue-logs"
 FILE_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$FILE_NAME.log"
 MONGO_IP="mongodb.believeinyou.fun"
