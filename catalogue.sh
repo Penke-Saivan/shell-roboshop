@@ -53,6 +53,7 @@ if [ $? -ne 0 ]; then
 
 else
     echo -e "user alrerady exits.. $Y ..Skipping>>$N"
+fi    
 
 mkdir -p /app 
 VALIDATE $? "creating app directory"
