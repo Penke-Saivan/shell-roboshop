@@ -54,7 +54,7 @@ VALIDATE $? "Start RabbitMQ"
 # fi 
 
 rabbitmqctl add_user roboshop roboshop123
-if [$? -ne 0 ]; then
+if [ $? -ne 0 ]; then
     rabbitmqctl delete_user roboshop
     echo -e "Deleting User Roboshop "
 else
