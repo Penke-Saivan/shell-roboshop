@@ -44,9 +44,25 @@ VALIDATE $? "Enable RabbitMQ"
 systemctl start rabbitmq-server&>>LOG_FILE
 VALIDATE $? "Start RabbitMQ"
 
+# id roboshop
+# if [ $? -ne 0 ]; then 
+#     rabbitmqctl add_user roboshop roboshop123
+#     VALIDATE $? "add user roboshop"
+
+# else
+#     echo -e "user alrerady exits.. $Y ..Skipping>>$N"
+# fi 
 
 rabbitmqctl add_user roboshop roboshop123
-VALIDATE $? "add user roboshop"
+if [$? -ne 0 ]; then
+    rabbitmqctl delete_user roboshop
+    echo -e "Deleting User Roboshop "
+else
+    echo -e "USer added successfully"
+    rabbitmqctl add_user roboshop roboshop123
+fi        
+
+
 
 
 
