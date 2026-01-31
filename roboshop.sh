@@ -4,14 +4,19 @@ SG_ID="sg-0adfe78ec6189cd05"
 ZONE_ID="Z03460353RS4GS5RQB39D"
 DOMAIN_NAME="believeinyou.fun"
 echo "get IP_ss"
-#Instance ID flow
-
-
+#Instance_ID flow
 # Create EC2
 ️# AWS returns huge JSON
 #--query extracts InstanceId
 # --output text removes JSON formatting
 # $() stores the value
+
+# Find instance with given ID- IP_Address
+# Get full metadata
+# Extract only PublicIpAddress
+# Return plain text
+# Store inside variable
+
 for instance in $*
 do 
     INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --count 1 --instance-type t3.micro --security-group-ids $SG_ID --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$instance}]" --query 'Instances[0].InstanceId' --output text)
