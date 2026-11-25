@@ -1,5 +1,6 @@
 echo "In the terminal while running add the instances names (frontend, catalogue, mysql)"
-AMI_ID="ami-09c813fb71547fc4f"
+#AMI_ID="ami-09c813fb71547fc4f"
+AMI_ID="ami-0055977a6e828a4f4"
 SG_ID="sg-0adfe78ec6189cd05"
 ZONE_ID="Z03460353RS4GS5RQB39D"
 DOMAIN_NAME="believeinyou.fun"
